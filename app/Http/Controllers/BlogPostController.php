@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreBlogPost;
 use App\BlogPost;
+use App\SubscriberPost;
 use Mail;
 class BlogPostController extends Controller
 {
@@ -51,7 +52,9 @@ class BlogPostController extends Controller
 
       BlogPost::create(['title'=>$request->title,'author'=>$request->author,'content'=>$request->content ]);
       session()->flash('status', 'New post is announced.');
-      $data = array('name'=>"Blog Application",'title'=>$request->title,'author'=>$request->author,'content'=>$request->content);
+      $latestPost= DB::table('blog_posts')->orderBy('created_at', 'desc')->first();
+      // dd($latestPost);
+      $data = array('name'=>"Blog Application",'title'=>$request->title,'author'=>$request->author,'content'=>$request->content,'id'=>$latestPost->id);
       Mail::send('mail', $data, function($message) {
       $message->to('laravel.myowin@gmail.com', 'Myo Win')->subject
       ('HTML Testing Mail');

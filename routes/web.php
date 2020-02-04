@@ -21,7 +21,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['middleware' => ['auth']], function () {
              Route::resource('blog-posts','BlogPostController');//expect
-             Route::resource('/subscriber','SubscriberController');
+             Route::resource('subscribers','SubscriberController');
             });
 Route::get('/sendbasicemail','MailController@basic_email');
 Route::get('/sendhtmlemail','MailController@html_email');

@@ -37,6 +37,7 @@ class SubscriberController extends Controller
     public function store(StoreSubscriberPost $request)
     {
       SubscriberPost::create(['name'=>$request->name,'email'=>$request->email]);
+      session()->flash('status3', 'Your subscribe have succefful');
       return redirect()->route('blog-posts.index');
     }
 

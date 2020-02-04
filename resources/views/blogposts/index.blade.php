@@ -2,27 +2,6 @@
 @section('title','Blog Posts')
 @section('content')
 <br>
-@if(session()->has('status'))
-<div class="col-md-12">
-<div class="alert alert-success alert-dismissible fade show" role="alert">
-<strong>Congratulations ..!</strong> {{session()->get('status')}}
-<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-<span aria-hidden="true">&times;</span>
-</button>
-</div>
-</div>
-@endif
-
-@if(session()->has('status2'))
-<div class="col-md-12">
-<div class="alert alert-danger alert-dismissible fade show" role="alert">
-<strong>Congratulations ..!</strong> {{session()->get('status2')}}
-<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-<span aria-hidden="true">&times;</span>
-</button>
-</div>
-</div>
-@endif
 <!-- Button trigger modal -->
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
   Subscribe 
@@ -39,7 +18,14 @@
         </button>
       </div>
       <div class="modal-body">
-      <form action="{{url('subscriber')}}" method="POST">
+      
+      @if($errors->any())
+      @foreach ($errors->all() as $error)
+      <p class="text-danger">{{$error}}</p>
+      @endforeach
+      @endif
+
+      <form action="{{url('subscribers')}}" method="POST">
       @csrf
 
       <div class="form-group row">
@@ -67,6 +53,40 @@
     </div>
   </div>
 </div>
+<br><br>
+<br>
+@if(session()->has('status'))
+<div class="col-md-12">
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+<strong>Congratulations ..!</strong> {{session()->get('status')}}
+<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+<span aria-hidden="true">&times;</span>
+</button>
+</div>
+</div>
+@endif
+
+@if(session()->has('status2'))
+<div class="col-md-12">
+<div class="alert alert-danger alert-dismissible fade show" role="alert">
+<strong>Congratulations ..!</strong> {{session()->get('status2')}}
+<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+<span aria-hidden="true">&times;</span>
+</button>
+</div>
+</div>
+@endif
+@if(session()->has('status3'))
+<div class="col-md-12">
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+<strong>Congratulations ..!</strong> {{session()->get('status3')}}
+<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+<span aria-hidden="true">&times;</span>
+</button>
+</div>
+</div>
+@endif
+
    <div class="container">
      <div class="row">
 
