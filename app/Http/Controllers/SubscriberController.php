@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\StoreSubscriberPost;
 use App\SubscriberPost;
 use App\BlogPost;
+use Mail;
 class SubscriberController extends Controller
 {
     /**
@@ -38,6 +39,15 @@ class SubscriberController extends Controller
     {
       SubscriberPost::create(['name'=>$request->name,'email'=>$request->email]);
       session()->flash('status3', 'Your subscribe have succefful');
+
+      $data = array('name'=>"Blog Application",'username'=>$request->name,'email'=>$request->email);
+      Mail::send('subscriber', $data, function($message) use($request) {
+      $message->to($request->email,$request->name)->subject
+      ('HTML Testing Mail');
+      $message->from('laravel.myowin.mm@gmail.com','Blog Application');
+      });
+      echo "HTML Email Sent. Check your inbox.";
+      
       return redirect()->route('blog-posts.index');
     }
 

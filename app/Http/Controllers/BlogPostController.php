@@ -48,18 +48,22 @@ class BlogPostController extends Controller
       // $blogPost->view=0;
       // $blogPost->save();
 
-      $show=BlogPost::all();
+      
 
       BlogPost::create(['title'=>$request->title,'author'=>$request->author,'content'=>$request->content ]);
       session()->flash('status', 'New post is announced.');
       $latestPost= DB::table('blog_posts')->orderBy('created_at', 'desc')->first();
       // dd($latestPost);
+      $subscribers=SubscriberPost::all();
+      
       $data = array('name'=>"Blog Application",'title'=>$request->title,'author'=>$request->author,'content'=>$request->content,'id'=>$latestPost->id);
-      Mail::send('mail', $data, function($message) {
-      $message->to('laravel.myowin@gmail.com', 'Myo Win')->subject
+      foreach ($subscribers as $subscriber){
+      Mail::send('mail', $data, function($message) use($subscriber) {
+      $message->to($subscriber->email, $subscriber->name)->subject
       ('HTML Testing Mail');
       $message->from('laravel.myowin.mm@gmail.com','Blog Application');
       });
+    }
       echo "HTML Email Sent. Check your inbox.";
 
       return redirect()->route('blog-posts.index');
