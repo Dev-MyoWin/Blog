@@ -1,3 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+  body {
+  margin:0;
+}
+  </style>
+</head>
+<body>
 <table width="100%" height="100%" border="0" cellpadding="20" cellspacing="0" style="margin:0;border-collapse:collapse;border-spacing:0;padding:20px;font-family: Arial;">
   <tr>
     <td width="100%" valign="top" align="center" bgcolor="#eceeed">
@@ -12,13 +26,14 @@
                       <tr style="margin:0;padding:0;border-collapse:collapse;border-spacing:0;">
                         <td style="margin:0;padding:0;border-collapse:collapse;border-spacing:0;">
                           <div class="in-content" style="margin:0;padding:0;padding:30px;">
-                            <h3 style="margin:0;font-family:Helvetica, Arial;line-height:1.4;color:#3f526d;font-weight:500;font-size:20px;margin:20px 0px 15px;padding:0;">Hello {{$username}} ..!</h3>
-                            <p style="margin:0;padding:0;font-family:Helvetica, Arial;margin-bottom:10px;font-weight:300;color:black;font-size:15px;line-height:1.6;">
-                            Hello, this mail from <span style="color:blue">"{{$name}}"</span>.
-                            <br> <br>
-                            <p>Your subscribe have succefful please confirm here</p>
-                            <h3><span style="color:blue,text-align:center"><Strong>456789</Strong></span> </h3>
-                            
+                            <h3 style="margin:0;font-family:Helvetica, Arial;line-height:1.4;color:#3f526d;font-weight:500;font-size:20px;margin:20px 0px 15px;padding:0;">Welcome {{$username}}!</h3>
+
+                            <p style="margin:0;padding:0;font-family:Helvetica, Arial;margin-bottom:10px;font-weight:300;color:#96a6b0;font-size:15px;line-height:1.6;">
+                            Welcome to our Blog ... ! 
+                            Hello, this mail from <span style="color:blue">"{{$name}}"</span>
+                            Please Confirm Here
+                            </p>
+
                             <table border="0" cellpadding="0" cellspacing="0" class="btn btn-primary" width="100%" style="margin:0;padding:0;border-collapse:collapse;border-spacing:0;">
                               <tbody style="margin:0;padding:0;">
                                 <tr style="margin:0;padding:0;border-collapse:collapse;border-spacing:0;">
@@ -28,9 +43,7 @@
                                         <tr style="margin:0;padding:0;border-collapse:collapse;border-spacing:0;">
                                           <td style="margin:0;padding:0;border-collapse:collapse;border-spacing:0;">
                                             <div style="margin:0;padding:0;text-align: center;width: 100%;">
-                                            <a href="" target="_blank" class="cta-button btn-primary" style="margin:0;padding:0;display:inline-block;background:blue;color:#fff;text-decoration:none;padding:15px 25px;border-radius:5px;font-size:14px;letter-spacing:1px;font-weight:100;margin:20px auto;">See More >> </a>                                              
-                                            
-                                            </div>
+                                              <a href="#" target="_blank" class="cta-button" style="margin:0;padding:0;display:inline-block;background:blue;color:#fff;text-decoration:none;padding:15px 25px;border-radius:5px;font-size:14px;letter-spacing:1px;font-weight:100;margin:20px auto;"><span style="color:white"> {{$confirmation_code}}  </span></a></div>
                                           </td>
                                         </tr>
                                       </tbody>
@@ -63,3 +76,5 @@
     </td>
   </tr>
 </table>
+</body>
+</html>

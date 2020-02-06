@@ -2,6 +2,7 @@
 @section('title','View Post')
 @section('content')
 <br>
+
 @if(session()->has('status1'))
 <div class="col-md-12">
 <div class="alert alert-warning alert-dismissible fade show" role="alert">
@@ -12,6 +13,7 @@
 </div>
 </div>
 @endif
+
 <h4 class="display-4 my-3">{{$post->title}}</h4>
 <p class="text-danger mb-4">(author-{{$post->author}}) (view-{{$post->view-1}})</p>
 

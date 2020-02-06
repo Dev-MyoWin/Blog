@@ -25,7 +25,7 @@ class StoreSubscriberPost extends FormRequest
     {
         return [
             'name'=>'required',
-            'email'=>'required|unique:subscriber_posts'
+            'email'=>'required|unique:subscriber_posts',
         ];
     }
 }

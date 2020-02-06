@@ -3,7 +3,7 @@
 @section('content')
 <br>
 <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+<button type="button" class="btn btn-primary  " data-toggle="modal" data-target="#exampleModalCenter">
   Subscribe 
 </button>
 
@@ -31,14 +31,14 @@
       <div class="form-group row">
         <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm text-primary">Name</label>
         <div class="col-sm-10">
-          <input type="text" class="form-control form-control-sm" id="colFormLabelSm" name="name" placeholder="Enter Your Name">
+          <input type="text" class="form-control form-control-sm" id="name" name="name" placeholder="Enter Your Name">
         </div>
       </div>
 
       <div class="form-group row">
         <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm text-primary">Email</label>
         <div class="col-sm-10">
-          <input type="text" class="form-control form-control-sm" id="colFormLabelSm" name="email" placeholder="Enter Your Email">
+          <input type="text" class="form-control form-control-sm" id="email" name="email" placeholder="Enter Your Email">
         </div>
       </div>
 
@@ -53,8 +53,10 @@
     </div>
   </div>
 </div>
-<br><br>
 <br>
+<br>
+<br>
+
 @if(session()->has('status'))
 <div class="col-md-12">
 <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -76,6 +78,7 @@
 </div>
 </div>
 @endif
+
 @if(session()->has('status3'))
 <div class="col-md-12">
 <div class="alert alert-success alert-dismissible fade show" role="alert">

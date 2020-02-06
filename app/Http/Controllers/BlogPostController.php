@@ -52,6 +52,7 @@ class BlogPostController extends Controller
 
       BlogPost::create(['title'=>$request->title,'author'=>$request->author,'content'=>$request->content ]);
       session()->flash('status', 'New post is announced.');
+      
       $latestPost= DB::table('blog_posts')->orderBy('created_at', 'desc')->first();
       // dd($latestPost);
       $subscribers=SubscriberPost::all();
