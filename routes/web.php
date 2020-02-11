@@ -17,11 +17,15 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'BlogPostController@index')->name('home');
 
 Route::group(['middleware' => ['auth']], function () {
              Route::resource('blog-posts','BlogPostController');//expect
-             Route::resource('subscribers','SubscriberController');
+            
             });
+Route::resource('subscribers','SubscriberController');
 Route::get('/sendbasicemail','MailController@basic_email');
 Route::get('/sendhtmlemail','MailController@html_email');
+Route::get('/confirmationcode','SubscriberController@confirmation_code');
+
+Route::post('mail-confirmation','SubscriberController@confirmation')->name('mail.confirmation');

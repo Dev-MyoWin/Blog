@@ -60,29 +60,7 @@
 @if(session()->has('status'))
 <div class="col-md-12">
 <div class="alert alert-success alert-dismissible fade show" role="alert">
-<strong>Congratulations ..!</strong> {{session()->get('status')}}
-<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-<span aria-hidden="true">&times;</span>
-</button>
-</div>
-</div>
-@endif
-
-@if(session()->has('status2'))
-<div class="col-md-12">
-<div class="alert alert-danger alert-dismissible fade show" role="alert">
-<strong>Congratulations ..!</strong> {{session()->get('status2')}}
-<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-<span aria-hidden="true">&times;</span>
-</button>
-</div>
-</div>
-@endif
-
-@if(session()->has('status3'))
-<div class="col-md-12">
-<div class="alert alert-success alert-dismissible fade show" role="alert">
-<strong>Congratulations ..!</strong> {{session()->get('status3')}}
+<strong>{{session()->get('status')}}</strong> 
 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
 <span aria-hidden="true">&times;</span>
 </button>
@@ -119,7 +97,7 @@
          <h1 class="display-4">No Data Avaiable Now..!</h1>
          <p class="lead text-info mt-5">You can be star author</p>
          <hr class="my-4">
-         <a class="btn btn-success btn-sm float-right mt-5" href="{{route('blog-posts.create')}}" role="button">Learn more</a>
+         <a class="btn btn-success btn-lg float-right mt-5" href="{{route('blog-posts.create')}}" role="button">Learn more</a>
        </div>
 
        @endforelse

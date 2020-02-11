@@ -17,7 +17,7 @@ class CreateSubscriberPostsTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('email');
-            $table->boolean('scribe')->default(false);
+            $table->boolean('status')->default(false);
             $table->string('confirmation_code');
             $table->timestamps();
         });

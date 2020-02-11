@@ -51,6 +51,7 @@ class BlogPostController extends Controller
       
 
       BlogPost::create(['title'=>$request->title,'author'=>$request->author,'content'=>$request->content ]);
+     
       session()->flash('status', 'New post is announced.');
       
       $latestPost= DB::table('blog_posts')->orderBy('created_at', 'desc')->first();
@@ -106,7 +107,7 @@ class BlogPostController extends Controller
     {
         $editPost = BlogPost::find($id);
         BlogPost::where('id',$id)->update(['title'=>$request->title,'author'=>$request->author,'content'=>$request->content]);
-        session()->flash('status1', 'the post title '.'('. $editPost->title .')'.' of the author '.'('.$editPost->author.')'.'have been edited.');
+        session()->flash('status', 'the post title '.'('. $editPost->title .')'.' of the author '.'('.$editPost->author.')'.'have been edited.');
         return redirect()->route('blog-posts.show',['blog_post'=>$id]);
     }
 
@@ -120,7 +121,7 @@ class BlogPostController extends Controller
     {
       $blogPost = BlogPost::find($id);
       $blogPost->delete();
-      session()->flash('status2', 'the post title '.'('. $blogPost->title .')'.' of the author '.'('.$blogPost->author.')'.'have been deleted.');
+      session()->flash('status', 'the post title '.'('. $blogPost->title .')'.' of the author '.'('.$blogPost->author.')'.'have been deleted.');
       return redirect()->route('blog-posts.index');
     }
 }

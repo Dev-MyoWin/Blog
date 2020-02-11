@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Home page</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
@@ -25,6 +25,7 @@
                 <a class="navbar-brand" href="https://www.example.com">LOGO</a>
             </div>
             <div class="collapse navbar-collapse" id="navbarToggler">
+            @if (Route::has('login'))
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
                         <a class="nav-link" rel="tooltip" title="Follow us on Twitter" data-placement="bottom" href="https://twitter.com/" target="_blank">
@@ -50,10 +51,22 @@
                             <p class="hidden-lg-up">GitHub</p>
                         </a>
                     </li>
+                    @auth
                     <li class="nav-item">
-						<a href="https://www.example.com" target="_blank" class="btn btn-danger btn-round">Login</a>
+						<a href="{{ url('/home') }}" target="_blank" class="btn btn-danger btn-round">Home</a>
 					</li>
+                    @else
+                    <li class="nav-item">
+						<a href="{{ route('login') }}" target="_blank" class="btn btn-danger btn-round">Login</a>
+					</li>
+                    @if (Route::has('register'))
+                    <li class="nav-item">
+						<a href="{{ route('register') }}"" target="_blank" class="btn btn-danger btn-round">Register</a>
+					</li>
+                    @endif
+                    @endauth
                 </ul>
+                @endif
             </div>
         </div>
     </nav>
@@ -63,7 +76,7 @@
     		<div class="content-center">
     			<div class="container">
     				<div class="title-brand">
-    					<h1 class="presentation-title">SITE TITLE</h1>
+    					<h1 class="presentation-title">WELCOME</h1>
     					<div class="fog-low">
     						<img src="http://demos.creative-tim.com/paper-kit-2/assets/img/fog-low.png" alt="">
     					</div>
@@ -72,7 +85,7 @@
     					</div>
     				</div>
 
-    				<h2 class="presentation-subtitle text-center">Headline</h2>
+    				<h2 class="presentation-subtitle text-center">Be Happy</h2>
     			</div>
     		</div>
             <div class="moving-clouds" style="background-image: url('http://demos.creative-tim.com/paper-kit-2/assets/img/clouds.png'); ">

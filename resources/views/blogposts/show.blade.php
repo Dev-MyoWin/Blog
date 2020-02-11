@@ -3,7 +3,7 @@
 @section('content')
 <br>
 
-@if(session()->has('status1'))
+@if(session()->has('status'))
 <div class="col-md-12">
 <div class="alert alert-warning alert-dismissible fade show" role="alert">
 <strong>Congratulations ..! </strong> {{session()->get('status1')}}
