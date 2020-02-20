@@ -29,3 +29,4 @@ Route::get('/sendhtmlemail','MailController@html_email');
 Route::get('/confirmationcode','SubscriberController@confirmation_code');
 
 Route::post('mail-confirmation','SubscriberController@confirmation')->name('mail.confirmation');
+Route::post('comment','CommentController@store');

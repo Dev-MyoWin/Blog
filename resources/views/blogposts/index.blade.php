@@ -88,6 +88,8 @@
            </p>
            <a href="#" class="card-link btn btn-warning">View -({{$blogpost->view}})</a>
            <a href="{{route('blog-posts.show',['blog_post'=>$blogpost->id])}}" class="card-link btn  btn-primary float-right">Read More..</a>
+           
+
          </div>
        </div>
        <br> <br>

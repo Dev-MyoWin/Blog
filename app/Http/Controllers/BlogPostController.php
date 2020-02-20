@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\StoreBlogPost;
 use App\BlogPost;
 use App\SubscriberPost;
+use App\Comment;
 use Mail;
 class BlogPostController extends Controller
 {
@@ -19,6 +20,7 @@ class BlogPostController extends Controller
         // $blogposts=BlogPost::all();
         // $blogposts = DB::table('blog_posts')->paginate(9); //(remark table form)
         $blogposts = BlogPost::paginate(9);
+        
         return view('blogposts.index',['blogposts'=>$blogposts]);
     }
 
@@ -78,8 +80,11 @@ class BlogPostController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
+
     {
+
       $blogPost=BlogPost::find($id);
+      // $comments=Comment::whereId('id',$id)->first();
       BlogPost::where('id',$id)->update(['view'=>$blogPost->view+1]);
         return view('blogposts.show',['post'=>BlogPost::find($id)]);
     }
