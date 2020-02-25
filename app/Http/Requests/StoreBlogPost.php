@@ -25,7 +25,7 @@ class StoreBlogPost extends FormRequest
     {
         return [
           'title'=>'required|min:5|max:80|unique:blog_posts',
-          'author'=>'required|min:5|max:50',
+          'imageUrl'=>'required',
           'content'=>'required|min:50'
         ];
     }

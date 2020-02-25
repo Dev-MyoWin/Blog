@@ -1,19 +1,21 @@
 <?php
 
 namespace App\Http\Controllers;
-use Illuminate\Support\Facades\Auth;
+use App\User;
+use App\BlogPost;
 use Illuminate\Http\Request;
-use App\Comment;
-class CommentController extends Controller
+
+class AuthorController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(User $model)
     {
-        //
+        
+        return view('authors.index',['authors'=>$model::paginate(9)]);
     }
 
     /**
@@ -34,10 +36,7 @@ class CommentController extends Controller
      */
     public function store(Request $request)
     {
-        
-        Comment::create(['description'=>$request->description,'blog_post_id'=>$request->id,'user_id'=>Auth::user()->id]);
-        return redirect()->route('blog-posts.show',$request->id);
-        
+        //
     }
 
     /**
@@ -48,7 +47,7 @@ class CommentController extends Controller
      */
     public function show($id)
     {
-        //
+        
     }
 
     /**
@@ -82,6 +81,14 @@ class CommentController extends Controller
      */
     public function destroy($id)
     {
-        //
+         $posts = BlogPost::where('user_id','=',$id)->get();
+      for($i=0;$i<count($posts);$i++)
+      {
+        BlogPost::where('user_id','=',$posts[$i]->id)->update(['user_id',4]);
+      }
+
+      User::find($id)->delete();
+
+    //   return redirect()->route('authors');
     }
 }

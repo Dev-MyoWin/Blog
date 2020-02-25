@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreBlogPost;
 use App\BlogPost;
 use App\SubscriberPost;
 use App\Comment;
+use App\User;
 use Mail;
 class BlogPostController extends Controller
 {
@@ -20,7 +22,6 @@ class BlogPostController extends Controller
         // $blogposts=BlogPost::all();
         // $blogposts = DB::table('blog_posts')->paginate(9); //(remark table form)
         $blogposts = BlogPost::paginate(9);
-        
         return view('blogposts.index',['blogposts'=>$blogposts]);
     }
 
@@ -52,15 +53,13 @@ class BlogPostController extends Controller
 
       
 
-      BlogPost::create(['title'=>$request->title,'author'=>$request->author,'content'=>$request->content ]);
-     
-      session()->flash('status', 'New post is announced.');
+      BlogPost::create(['title'=>$request->title,'imageUrl'=>$request->imageUrl,'user_id'=>Auth::user()->id,'content'=>$request->content ]);
       
       $latestPost= DB::table('blog_posts')->orderBy('created_at', 'desc')->first();
       // dd($latestPost);
       $subscribers=SubscriberPost::all();
       
-      $data = array('name'=>"Blog Application",'title'=>$request->title,'author'=>$request->author,'content'=>$request->content,'id'=>$latestPost->id);
+      $data = array('name'=>"Blog Application",'title'=>$request->title,'author'=>Auth::user()->name,'content'=>$request->content,'id'=>$latestPost->id);
       foreach ($subscribers as $subscriber){
       Mail::send('mail', $data, function($message) use($subscriber) {
       $message->to($subscriber->email, $subscriber->name)->subject
@@ -68,7 +67,9 @@ class BlogPostController extends Controller
       $message->from('laravel.myowin.mm@gmail.com','Blog Application');
       });
     }
-      echo "HTML Email Sent. Check your inbox.";
+    
+    
+      session()->flash('status1', 'New Post is annoucend!!');
 
       return redirect()->route('blog-posts.index');
     }
@@ -84,6 +85,7 @@ class BlogPostController extends Controller
     {
 
       $blogPost=BlogPost::find($id);
+      
       // $comments=Comment::whereId('id',$id)->first();
       BlogPost::where('id',$id)->update(['view'=>$blogPost->view+1]);
         return view('blogposts.show',['post'=>BlogPost::find($id)]);
@@ -111,8 +113,8 @@ class BlogPostController extends Controller
     public function update(Request $request, $id)
     {
         $editPost = BlogPost::find($id);
-        BlogPost::where('id',$id)->update(['title'=>$request->title,'author'=>$request->author,'content'=>$request->content]);
-        session()->flash('status', 'the post title '.'('. $editPost->title .')'.' of the author '.'('.$editPost->author.')'.'have been edited.');
+        BlogPost::where('id',$id)->update(['title'=>$request->title,'imageUrl'=>$request->imageUrl,'content'=>$request->content]);
+        session()->flash('status', 'the post title '.'('. $request->title .')'.' of the author '.'('.Auth::user()->name.')'.'have been edited.');
         return redirect()->route('blog-posts.show',['blog_post'=>$id]);
     }
 

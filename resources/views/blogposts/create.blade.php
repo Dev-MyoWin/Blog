@@ -25,9 +25,9 @@
     </div>
   </div>
   <div class="form-group row">
-    <label for="colFormLabel" class="col-sm-2 col-form-label text-primary">Author</label>
+    <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm text-primary">Image</label>
     <div class="col-sm-10">
-      <input type="text" class="form-control" id="colFormLabel" name="author" placeholder="Author" value="{{old('author')}}">
+      <input type="text" class="form-control form-control-sm" id="colFormLabelSm" name="imageUrl" placeholder="ImageUrl" value="{{old('imageUrl')}}" >
     </div>
   </div>
   <div class="form-group row">

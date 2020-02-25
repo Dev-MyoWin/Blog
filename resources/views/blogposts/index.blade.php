@@ -3,8 +3,9 @@
 @section('content')
 <br>
 <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary  " data-toggle="modal" data-target="#exampleModalCenter">
-  Subscribe 
+@if(!Auth::user())
+<button type="button" class="btn btn-warning  float-right " data-toggle="modal" data-target="#exampleModalCenter">
+  Subscribe Now
 </button>
 
 <!-- Modal -->
@@ -53,14 +54,26 @@
     </div>
   </div>
 </div>
+@endif
 <br>
 <br>
 <br>
 
 @if(session()->has('status'))
 <div class="col-md-12">
-<div class="alert alert-success alert-dismissible fade show" role="alert">
+<div class="alert alert-danger alert-dismissible fade show" role="alert">
 <strong>{{session()->get('status')}}</strong> 
+<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+<span aria-hidden="true">&times;</span>
+</button>
+</div>
+</div>
+@endif
+
+@if(session()->has('status1'))
+<div class="col-md-12">
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+<strong>Congratulations ..! </strong> {{session()->get('status1')}}
 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
 <span aria-hidden="true">&times;</span>
 </button>
@@ -74,15 +87,18 @@
        @forelse ($blogposts as $blogpost)
        <div class="card col-md-3 my-3 mx-4 shadow" >
          <div class="card-body" style="width: 17rem;">
-           <h5 class="card-title">
+         <h6 class="card-subtitle  text-primary float-right ">
+         <i class="fa fa-clock-o" style="font-size:20px"></i> &nbsp;{{\Carbon\Carbon::parse($blogpost->created_at)->diffForHumans()}}
+           </h6>
+           <h5 class="card-title mt-4">
            {{$blogpost->title}}
            </h5>
-           <h6 class="card-subtitle mb-2 text-muted">
-           author-({{$blogpost->author}})
+           <img src="{{$blogpost->imageUrl}}" alt="Image" style="width:200px;height:150px;">
+           
+           <h6 class="card-subtitle mt-4 text-primary">
+           author-({{$blogpost->user->name}})
            </h6>
-           <h6 class="card-subtitle mb-2 text-primary float-right">
-           {{\Carbon\Carbon::parse($blogpost->created_at)->diffForHumans()}}
-           </h6>
+           
            <p class="card-text">
              {{implode(' ',array_slice(explode(' ',$blogpost->content),0,15))}}...
            </p>
@@ -104,7 +120,12 @@
 
        @endforelse
      </div>
-     {{ $blogposts->links() }}
+     <div class="row mt-3">
+  <div class="col-md-2"></div>
+  <div class="col-md-8" >{{ $blogposts->links() }}</div>
+  
+</div>
+     
    </div>
 
 

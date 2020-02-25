@@ -12,18 +12,34 @@
       <li class="nav-item">
         <a class="nav-link" href="#">Contact</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">About</a>
-      </li>
+     
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Posts
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
           <a class="dropdown-item" href="{{url('blog-posts')}}">View all</a>
+          @if(Auth::user())
+          
           <a class="dropdown-item" href="{{route('blog-posts.create')}}">Create</a>
+          
+          @endif
         </div>
       </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Authors
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" href="{{route('authors')}}">View all</a>
+          @if(Auth::user())
+          
+          <a class="dropdown-item" href="#">Vote</a>
+          
+          @endif
+        </div>
+      </li>
+     
     </ul>
 
     <ul class="navbar-nav ml-auto">
